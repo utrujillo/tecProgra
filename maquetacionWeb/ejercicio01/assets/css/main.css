@@ -1,0 +1,13 @@
+@import 'tipografias.css';
+@import 'navegacion.css';
+
+.wrapper__navbar{
+  width: 100%;
+  background: #1E5AF9;
+  height: 100px;
+  color: white;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
