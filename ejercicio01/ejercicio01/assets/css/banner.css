@@ -1,0 +1,22 @@
+.wrapper__banner{
+  background: #1E5AF9;
+  min-height: 400px;
+  padding: 3%;
+  width: 94%;
+
+  display: flex;
+  align-items: flex-end;
+}
+
+  .wrapper_smedia{
+    display: flex;
+    flex-direction: column;
+  }
+    .wrapper_smedia .item{
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      margin-bottom: 15px;
+    }

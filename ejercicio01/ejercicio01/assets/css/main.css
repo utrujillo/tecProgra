@@ -1,5 +1,8 @@
 @import 'tipografias.css';
 @import 'navegacion.css';
+@import 'banner.css';
+
+* { margin: 0; padding: 0; }
 
 .wrapper__navbar{
   width: 100%;
