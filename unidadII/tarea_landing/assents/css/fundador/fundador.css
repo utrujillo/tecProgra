@@ -1,0 +1,52 @@
+@import '../tipografias.css';
+
+ *{
+      margin: 0;
+    }
+  .Directivo{
+      height: 650px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+  }
+  .seccion1{
+      background: url(../../images/photos/fondo.png) 40% no-repeat;
+      background-size: contain;
+      height: 530px;
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      align-content: space-around;
+  }
+ .seccion1 .Texto{
+      height: 350px;
+      width: 70%;
+      margin: 0 auto;
+      align-self: center;
+      text-align: justify;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-evenly;
+}
+  .seccionimg{
+      height: 500px;
+      width: 30%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      align-content: center;
+  }
+
+
+
+  @media (min-width: 768px){
+  .flex-md-row {
+      flex-direction: row!important;
+  }}
