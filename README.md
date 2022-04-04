@@ -5,4 +5,5 @@ Lenguajes de programacion 🔥
 Ing. Uziel Trujillo Colon
 
 # Estudiantes
-Marcos Brayan Hernandez Mejia M21320012
+M21320010 Xiadani Gutierrez Rendon
+M21320012 Marcos Brayan Hernandez Mejia
