@@ -3,7 +3,7 @@
  *{
       margin: 0;
     }
-  .Directivo{
+  .fundador{
       height: 100%;
       width: 100%;
       display: flex;
@@ -12,7 +12,7 @@
       align-items: center;
       align-content: center;
   }
-  .seccion1{
+  .seccionprincipal{
       background: url(../../images/photos/fondo.png) 40% no-repeat;
       background-size: contain;
       height: 100%;
@@ -23,7 +23,7 @@
       align-items: flex-start;
       align-content: space-around;
   }
- .seccion1 .Texto{
+ .seccionprincipal .Texto{
       height: 100%;
       width: 70%;
       margin: 0 auto;
@@ -47,7 +47,7 @@
     .flex-md-row {
         flex-direction: row!important;
         }
-    .secciontexto{ 
+    .seccion-sm{ 
         width: 70%;  
         }
     .seccionimg{
@@ -57,13 +57,13 @@
         align-items: center;
         align-content: center;
         }
-    .Directivo{
+    .fundador{
         height: 650px;
         }
-    .seccion1{
+    .seccionprincipal{
         height: 530px;
         }
-    .seccion1 .Texto{
+    .seccionprincipal .Texto{
         height:350px;
         }
 }
