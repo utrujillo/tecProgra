@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+*{
+    margin: 0;
+  }
+  * {
+    box-sizing: border-box;
+  }
+.principal {
+    background: #23496c;
+    min-height: 680px;
+    padding: 50px 0;
+    display: flex;    
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    overflow: hidden;
+   
+
+}
+
+
+.procesos{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center; 
+  
+
+    
+
+}
+.circulo {
+    
+    width: 100px;
+    height: 100px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #29DFE2;
+    justify-content:center;
+    align-items: center;
+    display: flex;
+    -webkit-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear;
+
+
+}
+.circulo:hover{
+    background-color: #6AF2F4;
+  }
+.circulo > h1 {
+	font-family: sans-serif;
+	color: white;
+	font-size: 1.4rem;
+	font-weight: bold;
+    
+}
+
+
+
+.general{
+height:300px;
+   display: flex;
+   justify-content:center;
+   flex-direction:column;
+   align-items: center;
+   align-content: center;
+
+   
+ 
+}
+
+.general2 {
+    display: flex;
+    justify-content: column;
+    align-items: center;
+  
+ }
+
+.font a {
+    font-family: montserrat;
+    background-color: white;
+
+}
+.description{
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center; 
+    color:white;
+    width:210px;
+    font-family:'Montserrat';
+    font-size: 15px;
+
+
+}
+.detail-description{
+    font-family:'Montserrat';
+    font-size: 10px;
+
+}
+.encacebzado{
+    font-family:'Montserrat';
+    text-align: center;
+    margin: 'special';
+    color:white;
+    font-size: 40px;
+
+}
+
+/* Responsive layout - makes a one column-layout instead of two-column layout */
+@media (max-width:900px) {
+    .procesos {
+      flex-direction: column;
+      
+    }
+    .general{
+        flex-direction: row;
+
+        
+    }
+  }
