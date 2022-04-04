@@ -1,5 +1,5 @@
 section.banner {
-    background: url('~@/assets/images/photos/suit1.jpg') no-repeat;
+    background: url('../../images/photos/suit1.jpg') no-repeat;
     background-size: cover;
     height: 655px;
   }
@@ -17,8 +17,9 @@ section.banner {
     max-width: 575px;
     text-align: center;
   }
+  
   section.banner .shape-layer .banner-title {
-    font-weight: 700;
+    font-weight: 900;
     font-size: 36px;
     letter-spacing: 2px;
   }
@@ -26,3 +27,54 @@ section.banner {
     font-weight: 100;
     font-size: 24px;
   }
+/*CENTRAR LETRAS*/
+  .d-flex {
+    display: flex!important;
+  }
+  .flex-column {
+    flex-direction: column!important;
+  }
+  .justify-content-center {
+    justify-content: center!important;
+  }
+
+  .align-items-center {
+    align-items: center!important;
+  }
+  /*IMAGEN RESPONSIVA*/
+  img {
+    border-style: none;
+}
+img, svg {
+  vertical-align: middle;
+}
+.img-fluid, .img-thumbnail {
+  max-width: 100%;
+  height: auto;
+}
+/*TEXTO*/
+.mt-4, .my-4 {
+  margin-top: 1.5rem!important;
+}
+.mt-2, .my-2 {
+  margin-top: 0.5rem!important;
+}
+.open-sans, body, html {
+  font-family: Open Sans,sans-serif;
+}
+/*HS*/
+.h1, h1 {
+  font-size: 2.5rem;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+*, :after, :before {
+  box-sizing: border-box;
+}
