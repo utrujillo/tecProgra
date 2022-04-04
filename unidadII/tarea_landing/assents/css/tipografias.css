@@ -6,6 +6,11 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: lighter;
 }
+.montserrat--regular{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+} 
+
 .montserrat--bold{
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
@@ -31,6 +36,8 @@
   font-family:'Comfortaa', sans-serif;
   font-weight: 400;
 }
+
+
 
 .fs-8{ font-size: 8x; }
 .fs-10{ font-size: 10px; }
