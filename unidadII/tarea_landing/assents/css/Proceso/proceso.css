@@ -43,15 +43,23 @@
     justify-content:center;
     align-items: center;
     display: flex;
+    -webkit-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear;
 
 
 }
+.circulo:hover{
+    background-color: #6AF2F4;
+  }
 .circulo > h1 {
 	font-family: sans-serif;
 	color: white;
 	font-size: 1.4rem;
 	font-weight: bold;
+    
 }
+
+
 
 .general{
 height:300px;
@@ -92,9 +100,14 @@ height:300px;
 .detail-description{
     font-family:'Montserrat';
     font-size: 10px;
-    
 
-
+}
+.encacebzado{
+    font-family:'Montserrat';
+    text-align: center;
+    margin: 'special';
+    color:white;
+    font-size: 40px;
 
 }
 
