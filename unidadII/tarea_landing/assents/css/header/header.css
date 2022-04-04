@@ -1,0 +1,28 @@
+section.banner {
+    background: url('~@/assets/images/photos/suit1.jpg') no-repeat;
+    background-size: cover;
+    height: 655px;
+  }
+  section.banner .shape-layer {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+  }
+  section.banner .shape-layer .banner-logo {
+    max-width: 500px;
+    height: 100px;
+  }
+  section.banner .shape-layer .banner-title, section.banner .shape-layer .banner-subtitle {
+    color: white;
+    max-width: 575px;
+    text-align: center;
+  }
+  section.banner .shape-layer .banner-title {
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 2px;
+  }
+  section.banner .shape-layer .banner-subtitle {
+    font-weight: 100;
+    font-size: 24px;
+  }
