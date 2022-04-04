@@ -5,9 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assents/css/main.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <title>EASOCIADOS</title>
   <link rel="stylesheet" href="assents/css/tipografias.css">
   <link rel="stylesheet" href="assents/css/header/header.css">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <style>
   body {
@@ -32,7 +34,9 @@
     </section>
     <div class="fundador flex-md-row ">
       <div class="seccionprincipal seccion-sm">
-             <div class="Texto">
+             <div class="Texto" data-aos="fade-right"
+             data-aos-offset="300"
+             data-aos-easing="ease-in-sine">
               <h1 class="montserrat--light">Elí Olea Urioste</h1>
               <h1 class="montserrat--bold">Socio Fundador</h1>
               <p class="opensans--light">Nacio en Atoyac de Álvarez, Estado de Guerrero, México, el 12 de junio de 1956.</p>
@@ -41,12 +45,17 @@
              </div>
         </div>
         <div class="seccionimg">
-        <div class="imagen">
+        <div class="imagen"  data-aos="fade-left"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine">
           <img src="assents/images/photos/directi.png" width="100%" height="100%">
         </div>
       </div>
     </div>
 </div>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>
 
