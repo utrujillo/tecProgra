@@ -3,8 +3,8 @@
  *{
       margin: 0;
     }
-  .Directivo{
-      height: 650px;
+  .fundador{
+      height: 100%;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -12,19 +12,19 @@
       align-items: center;
       align-content: center;
   }
-  .seccion1{
+  .seccionprincipal{
       background: url(../../images/photos/fondo.png) 40% no-repeat;
       background-size: contain;
-      height: 530px;
-      width: 70%;
+      height: 100%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
       align-content: space-around;
   }
- .seccion1 .Texto{
-      height: 350px;
+ .seccionprincipal .Texto{
+      height: 100%;
       width: 70%;
       margin: 0 auto;
       align-self: center;
@@ -36,17 +36,34 @@
 }
   .seccionimg{
       height: 500px;
-      width: 30%;
+      width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
+      justify-content: center;
+      align-items: flex-start;
       align-content: center;
   }
-
-
-
   @media (min-width: 768px){
-  .flex-md-row {
-      flex-direction: row!important;
-  }}
+    .flex-md-row {
+        flex-direction: row!important;
+        }
+    .seccion-sm{ 
+        width: 70%;  
+        }
+    .seccionimg{
+        width: 30%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+        }
+    .fundador{
+        height: 650px;
+        }
+    .seccionprincipal{
+        height: 530px;
+        }
+    .seccionprincipal .Texto{
+        height:350px;
+        }
+}
