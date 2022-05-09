@@ -24,13 +24,15 @@ const Form = () => {
 
       <tbody>
         {
-          data.map( item => (
-            <tr key={item.id}>
-              <td>{ item.id }</td>
-              <td>{ item.ability }</td>
-              <td>{ item.score }</td>
-            </tr>
-          ) )
+          data
+            .filter( item => item.score == search )
+            .map( item => (
+              <tr key={item.id}>
+                <td>{ item.id }</td>
+                <td>{ item.ability }</td>
+                <td>{ item.score }</td>
+              </tr>
+            ) )
         }
         
       </tbody>
