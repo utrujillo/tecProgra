@@ -7,7 +7,7 @@ const Form = () => {
   const inputChange = ( e ) => {
     setSearch( e.target.value )
   }
-
+  let approved = data.filter(item => item.ability == search);
   return(
   <div>
     <input type="text" placeholder="Search" value={search}  onChange={ inputChange } />
@@ -23,7 +23,7 @@ const Form = () => {
       </thead>
 
       <tbody>
-        {
+        {  
           data.map( item => (
             <tr key={item.id}>
               <td>{ item.id }</td>
