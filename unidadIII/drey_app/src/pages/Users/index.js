@@ -1,21 +1,41 @@
 import React, { useState, useEffect } from 'react'
+import usersLoaded from './users'
 import useAPI from '../../hooks/API'
+import { useNavigate } from "react-router-dom"
 
 const Users = () => {
 
-  const { getRequest } = useAPI()
-  const [ pokemons, setPokemons ] = useState([])
+  // const { getRequest } = useAPI()
+  // const [ pokemons, setPokemons ] = useState([])
 
-  const loadPokemons = async () => {
-    let response = await getRequest('https://pokeapi.co/api/v2/pokemon')
-    setPokemons( response.results )
+  // const loadPokemons = async () => {
+  //   let response = await getRequest('https://pokeapi.co/api/v2/pokemon')
+  //   setPokemons( response.results )
+  // }
+
+  // useEffect( () => {
+  //   loadPokemons()
+  // }, [] )
+
+  const navigate = useNavigate()
+  const [ users, setUsers ] = useState([])
+
+  const loadUsers = () => {
+    setUsers( usersLoaded )
   }
 
   useEffect( () => {
-    loadPokemons()
+    loadUsers()
   }, [] )
 
-  console.log( pokemons )
+  const handleRedirect = (id) => {
+    console.log(`/users/${id}`)
+    // navigate(`/users/${id}`)
+  }
+
+  console.log( 'Usuarios', users );
+
+
   // result.then( resp => console.log( resp ) )
 
   return(
@@ -25,17 +45,24 @@ const Users = () => {
           <tr>
             <th></th>
             <th>ID</th>
-            <th>nombre</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role</th>
           </tr>
         </thead>
         <tbody>
           {
-            pokemons.map( (pokemon, index) => {
+            users?.map( (user, index) => {
               return(
-                <tr>
-                  <td>[ editar, eliminar ]</td>
-                  <td>{ index + 1 }</td>
-                  <td>{ pokemon.name }</td>
+                <tr key={ user.id }>
+                  <td>[ 
+                    <span onClick={ () => handleRedirect(user.id)}>editar</span>, 
+                    <span>eliminar</span> ]
+                  </td>
+                  <td>{ user.id }</td>
+                  <td>{ user.username }</td>
+                  <td>{ user.password }</td>
+                  <td>{ user.role_id }</td>
                 </tr>
               )
             } )

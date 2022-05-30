@@ -43,7 +43,7 @@ const Versus = () => {
                   <td></td>
                   <td>{ index + 1 }</td>
                   <td>{ alumno.nombre }</td>
-                  <td>{alumno.ApellidoP} {alumno.ApellidoM}</td>
+                
                 </tr>
               )
             } )
