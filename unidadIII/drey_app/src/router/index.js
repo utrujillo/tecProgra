@@ -1,5 +1,6 @@
 import Home from '../pages/Home'
 import About from '../pages/About'
+import Versus from '../pages/Versus'
 const routes = [
   {
     name: 'Home',
@@ -10,6 +11,11 @@ const routes = [
     name: 'About',
     path: '/about',
     component: About
+  },
+  {
+    name: 'Versus',
+    path: '/versus',
+    component:Versus
   }
 ]
 
