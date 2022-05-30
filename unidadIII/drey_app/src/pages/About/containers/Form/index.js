@@ -25,13 +25,13 @@ const Form = () => {
       <tbody>
         {
           data
-            .filter( item => item.score == search )
-            .map( item => (
-              <tr key={item.id}>
-                <td>{ item.id }</td>
-                <td>{ item.ability }</td>
-                <td>{ item.score }</td>
-              </tr>
+          .filter(item => item.ability.toLowerCase().indexOf(search.toLowerCase()) > -1)
+          .map( item => (
+            <tr key={item.id}>
+              <td>{ item.id }</td>
+              <td>{ item.ability }</td>
+              <td>{ item.score }</td>
+            </tr>
             ) )
         }
         
