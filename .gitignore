@@ -1,0 +1,23 @@
+# Consulte https://help.github.com/articles/ignoring-files/ para obtener más información sobre cómo ignorar archivos.
+
+node_modules /
+# dependencias
+/ .pnp
+.pnp.js
+
+# prueba
+/ cobertura
+
+# producción
+construir
+
+# varios
+.DS_Tienda
+.env.local
+.env.desarrollo.local
+.env.test.local
+.env.producción.local
+
+npm-debug.log *
+hilo-debug.log *
+hilo-error.log *
