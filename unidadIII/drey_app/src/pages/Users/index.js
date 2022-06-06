@@ -24,6 +24,12 @@ const Users = () => {
     setUsers( usersLoaded )
   }
 
+  const [shown, setShown] = React.useState(false);
+  const [password, setPassword] = React.useState('');
+  
+  const switchShown = () => setShown(!shown);
+  const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
+
   useEffect( () => {
     loadUsers()
   }, [] )
@@ -52,16 +58,25 @@ const Users = () => {
         </thead>
         <tbody>
           {
-            users?.map( (user, index) => {
+            users.map( (user, index) => {
               return(
                 <tr key={ user.id }>
                   <td>[ 
-                    <span onClick={ () => handleRedirect(user.id)}>editar</span>, 
+                    <span onClick={ () => handleRedirect(user.id)}>editar</span> 
                     <span>eliminar</span> ]
                   </td>
                   <td>{ user.id }</td>
                   <td>{ user.username }</td>
-                  <td>{ user.password }</td>
+                  <td><input
+        className="password__input"
+        id="password__input"
+        onChange={onChange}
+        placeholder=" "
+        type={shown ? 'text' : 'password'}
+        value={ user.password } 
+      /><button className="password__button" onClick={switchShown}>
+                    {shown ? 'Ocultar' : 'Mostrar'}
+                  </button></td>
                   <td>{ user.role_id }</td>
                 </tr>
               )
