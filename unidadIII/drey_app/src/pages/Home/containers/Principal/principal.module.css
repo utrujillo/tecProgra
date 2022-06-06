@@ -1,0 +1,21 @@
+.wrapper__principal{
+    display: flex;
+    flex-direction: row;
+  
+  }
+.wrapper__list{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+
+}
+.wrapper__li{
+  border-radius: 25px;
+  background: #091952;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  text-align: center;
+  color: antiquewhite;
+}
