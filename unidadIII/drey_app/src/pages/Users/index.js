@@ -18,6 +18,13 @@ const Users = () => {
   // }, [] )
 
   const navigate = useNavigate()
+
+  const [shown, setShown] = useState(false);
+      const switchShown = () => setShown(!shown);
+  const [password, setPassword] = useState(false);
+  const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
+  //operador ternario
+
   const [ users, setUsers ] = useState([])
 
   const loadUsers = () => {
@@ -61,7 +68,7 @@ const Users = () => {
                   </td>
                   <td>{ user.id }</td>
                   <td>{ user.username }</td>
-                  <td>{ user.password }</td>
+                  <td>{ password ? user.password :'********' } <button onClick={()=>setPassword(!password)}>{shown ? 'Ocultar' : 'Mostrar'}</button></td>
                   <td>{ user.role_id }</td>
                 </tr>
               )
