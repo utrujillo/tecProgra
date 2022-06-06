@@ -1,0 +1,80 @@
+section.banner {
+    background: url('../../images/photos/suit1.jpg') no-repeat;
+    background-size: cover;
+    height: 655px;
+  }
+  section.banner .shape-layer {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+  }
+  section.banner .shape-layer .banner-logo {
+    max-width: 500px;
+    height: 100px;
+  }
+  section.banner .shape-layer .banner-title, section.banner .shape-layer .banner-subtitle {
+    color: white;
+    max-width: 575px;
+    text-align: center;
+  }
+  
+  section.banner .shape-layer .banner-title {
+    font-weight: 900;
+    font-size: 36px;
+    letter-spacing: 2px;
+  }
+  section.banner .shape-layer .banner-subtitle {
+    font-weight: 100;
+    font-size: 24px;
+  }
+/*CENTRAR LETRAS*/
+  .d-flex {
+    display: flex!important;
+  }
+  .flex-column {
+    flex-direction: column!important;
+  }
+  .justify-content-center {
+    justify-content: center!important;
+  }
+
+  .align-items-center {
+    align-items: center!important;
+  }
+  /*IMAGEN RESPONSIVA*/
+  img {
+    border-style: none;
+}
+img, svg {
+  vertical-align: middle;
+}
+.img-fluid, .img-thumbnail {
+  max-width: 100%;
+  height: auto;
+}
+/*TEXTO*/
+.mt-4, .my-4 {
+  margin-top: 1.5rem!important;
+}
+.mt-2, .my-2 {
+  margin-top: 0.5rem!important;
+}
+.open-sans, body, html {
+  font-family: Open Sans,sans-serif;
+}
+/*HS*/
+.h1, h1 {
+  font-size: 2.5rem;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+*, :after, :before {
+  box-sizing: border-box;
+}

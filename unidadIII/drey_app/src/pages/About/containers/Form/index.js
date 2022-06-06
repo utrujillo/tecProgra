@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import data from './fakeTableData.js'
 
 const Form = () => {
-
   const [ search, setSearch ] = useState('')
   const inputChange = ( e ) => {
     setSearch( e.target.value )
   }
-
   return(
   <div>
     <input type="text" placeholder="Search" value={search}  onChange={ inputChange } />
@@ -21,11 +19,10 @@ const Form = () => {
           <th>Puntuacion</th>
         </tr>
       </thead>
-
       <tbody>
-        {
+      {
           data
-            .filter( item => item.score == search )
+          .filter(item => item.ability.toLowerCase().indexOf(search.toLowerCase()) > -1)
             .map( item => (
               <tr key={item.id}>
                 <td>{ item.id }</td>
@@ -33,12 +30,10 @@ const Form = () => {
                 <td>{ item.score }</td>
               </tr>
             ) )
-        }
-        
+        }     
       </tbody>
     </table>
   </div>
   )
 }
-
 export default Form

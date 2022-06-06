@@ -1,0 +1,40 @@
+.principal{
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+.alinear{
+  align-items: center;
+}
+table {
+  width: 100%;
+  border: 1px solid #000;
+}
+tbody tr:nth-child(odd) {
+  background-color: #1d46fc;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #0003ad;
+}
+th, td {
+  width: 25%;
+  text-align: center;
+  vertical-align: top;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  padding: 0.3em;
+  caption-side: bottom;
+  color: #fff;
+}
+caption {
+  padding: 0.3em;
+  color: #fff;
+   background: #000;
+}
+th {
+  background: #eee;
+  background: rgb(28, 6, 107);
+  color: #eee;
+  text-align: center;
+}

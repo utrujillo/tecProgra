@@ -11,6 +11,7 @@ import routes from '../router'
 const App = () => {
   return(
     <>
+      <Header />
       <BrowserRouter>
         <Routes>
           {
