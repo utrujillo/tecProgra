@@ -20,4 +20,4 @@ construir
 
 npm-debug.log *
 hilo-debug.log *
-hilo-error.log *
+hilo-error.log * 
