@@ -13,17 +13,11 @@ const Versus = () => {
     const load = async () => {
         const response = await fetch(url)
         const responseJSON = await response.json()
-
         setAlumnos(responseJSON)
-      
     }
-
     useEffect(() => {
         load()
     }, [])
-
-    
-
     return (
         <>
             <table>
@@ -48,7 +42,6 @@ const Versus = () => {
               )
             } )
           }
-
                 </tbody>
             </table>
         </>

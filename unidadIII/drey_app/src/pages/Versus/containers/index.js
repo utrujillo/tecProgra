@@ -15,7 +15,6 @@ const Table = () => {
             </div>
             <div>
                 <table align="center">
-                    
                     <tbody>
                         <tr>
                             <th>Patiño</th>
@@ -34,8 +33,6 @@ const Table = () => {
                         </tr>
 
                     </tbody>
-                    
-
                 </table>
                 <div className={classes.principal}>
                 <button type="submit">Cancelar</button>
