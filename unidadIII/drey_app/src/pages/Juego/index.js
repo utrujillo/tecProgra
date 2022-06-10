@@ -8,14 +8,14 @@ import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 
 const url="http://127.0.0.1:8000/drey/v1/Jugada/";
-const urlGrupo="http://127.0.0.1:8000/drey/v1/Grupo/";
+const urlClase="http://127.0.0.1:8000/drey/v1/Clase/";
 const urlAlumnos="http://127.0.0.1:8000/drey/v1/Alumno/";
 
 class Juego extends Component {
 state={
   cant:'',
   data:[],
-  dataGrupo:[],
+  dataClase:[],
   dataAlumnos:[],
   modalInsertar: false,
   modalEliminar: false,
@@ -24,7 +24,7 @@ state={
     cantParticipantes: '',
     fecha: '',
     detalle:'',
-    idGrupo:'',
+    idClase:'',
    
   }
 }
@@ -45,9 +45,9 @@ axios.get(url).then(response=>{
   console.log(error.message);
 })
 }
-peticionGetGrupo=()=>{
-  axios.get(urlGrupo).then(response=>{
-    this.setState({dataGrupo: response.data});
+peticionGetClase=()=>{
+  axios.get(urlClase).then(response=>{
+    this.setState({dataClase: response.data});
   }).catch(error=>{
     console.log(error.message);
   })
@@ -90,7 +90,7 @@ seleccionarJugada=(jugada)=>{
       cantParticipantes: jugada.cantParticipantes,
       fecha: jugada.fecha,
       detalle: jugada.detalle,
-      idGrupo: jugada.idGrupo,
+      idClase: jugada.idClase,
      
     }
   })
@@ -110,7 +110,7 @@ console.log(this.state.form);
 }
   componentDidMount() {
     this.peticionGet();
-    this.peticionGetGrupo();
+    this.peticionGetClase();
     this.peticionGetAlumnos();
   }
   
@@ -144,7 +144,7 @@ console.log(this.state.form);
           <td>{jugada.cantParticipantes}</td>
           <td>{jugada.fecha}</td>
           <td>{jugada.detalle}</td>
-          <td>{jugada.idGrupo}</td>
+          <td>{jugada.idClase}</td>
          
           <td>
                 <button className="btn btn-primary" onClick={()=>{this.seleccionarJugada(jugada); this.modalInsertar()}}>Actualizar</button>
@@ -167,9 +167,9 @@ console.log(this.state.form);
                   <div className="form-group">
                   <label htmlFor="nombre">Seleccionar clase</label>
                   <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" 
-                     name="id_carrera" id="id_carrera" onChange={this.handleChange}>
-                      {this.state.dataGrupo.map(grupo=>(
-                      <option key={grupo.id} value={grupo.id}>{grupo.nombre}</option>))
+                     name="idClase" id="idClase" onChange={this.handleChange}>
+                      {this.state.dataClase.map(clase=>(
+                      <option key={clase.id} value={clase.id}>{clase.nombre}</option>))
                       }
                       </select>
                     <br />
