@@ -11,8 +11,11 @@ export default function App() {
     const fetchData = async ()=> {
        try{
          const resp= await axios.get('http://127.0.0.1:8000/drey/v1/Alumno/');
+         
          setData(resp.data);
          setSearchFilter(resp.data);
+         let sortedData = resp.data.sort(() => Math.random() - 0.5);
+          console.log(sortedData);
        }
   catch(err){
    throw new Error(err);
