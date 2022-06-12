@@ -20,6 +20,7 @@ state={
   modalInsertar: false,
   modalEliminar: false,
   modalAlumnos: false,
+  modalEliminarAlumno: false,
   modalGrupoAlumnos: false,
   form:{
     id: '',
@@ -27,6 +28,7 @@ state={
    
   },
   formGrupoAlumnos:{
+    id:'',
     idGrupo: '',
     idAlumno: '',
    
@@ -100,6 +102,14 @@ peticionDelete=()=>{
     this.peticionGet();
   })
 }
+peticionDeleteAlumnos=()=>{
+  axios.delete(urlGrupoAlumnos+this.state.formAlumnos.id).then(response=>{
+    this.setState({modalEliminarAlumno: false});
+    this.peticionGetGrupoAlumnos();
+ 
+  })
+}
+
 
 modalInsertar=()=>{
   this.setState({modalInsertar: !this.state.modalInsertar});
@@ -121,6 +131,18 @@ seleccionarGrupo=(grupo)=>{
     }
   })
 }
+
+seleccionarAlumno=(alumno)=>{
+  this.setState({
+    tipoModal: 'actualizar',
+    formAlumnos: {
+      id: alumno.id,
+     
+    }
+  })
+}
+
+
 VerAlumnos=(grupo)=>{
   this.setState({
     tipoModal: 'Ver',
@@ -255,7 +277,15 @@ handleChange3=async e=>{
             </ModalFooter>
           </Modal>
 
-          
+          <Modal isOpen={this.state.modalEliminarAlumno}>
+            <ModalBody>
+               Estás seguro que deseas eliminar este alumno del grupo?{formAlumnos && formAlumnos.id}
+            </ModalBody>
+            <ModalFooter>
+              <button className="btn btn-danger" onClick={()=>{this.peticionDeleteAlumnos()}}>Sí</button>
+              <button className="btn btn-secundary" onClick={()=>{this.setState({modalEliminarAlumno: false})}}>No</button>
+            </ModalFooter>
+          </Modal>
           <Modal   isOpen={this.state.modalGrupoAlumnos} >
           <ModalHeader style={{display: 'block'}}>
                  <h5 class="modal-title" id="exampleModalLongTitle">Asignar alumno a grupo</h5>
@@ -266,17 +296,17 @@ handleChange3=async e=>{
                    
                     <label htmlFor="idGrupo">Grupo</label>
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" 
-                     name="idGrupo" id="idGrupo" onChange={this.handleChange2}>
+                     name="idGrupo" id="idGrupo" onChange={this.handleChange2}defaultValue={this.state.value}>
                       {this.state.data.map(Grupos=>(
-                      <option key={Grupos.id} value={Grupos.id}>{Grupos.nombre}</option>))
+                      <option key={Grupos.id} value={Grupos.id} >{Grupos.nombre}</option>))
                       }
                       </select>
                     <br />
                     <label htmlFor="idAlumno">Alumno</label>
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" 
-                     name="idAlumno" id="idAlumno" onChange={this.handleChange2}>
+                     name="idAlumno" id="idAlumno" onChange={this.handleChange2}value={this.state.value}>
                       {this.state.dataAlumnos.map(Alumnos=>(
-                      <option key={Alumnos.id} value={Alumnos.id}>{Alumnos.nombre}</option>))
+                      <option key={Alumnos.id} value={Alumnos.id} >{Alumnos.nombre}</option>))
                       }
                       </select>
                     <br />
@@ -311,8 +341,7 @@ handleChange3=async e=>{
                     <tr onChange={this.handleChange3}>
                   <td>{formAlumnos.nombre}</td>
                   <td>{alumno.idAlumno}</td>
-                  <td><button className="btn btn-danger" onClick={()=>{this.setState({modalEliminar: true})}}>Eliminar</button>
-                
+                  <td> <button className="btn btn-danger" onClick={()=>{this.seleccionarAlumno(alumno); this.setState({modalEliminarAlumno: true});this.modalAlumnos()}}>Eliminar</button>
                   </td>
                   </tr>
                   )
