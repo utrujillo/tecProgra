@@ -212,7 +212,7 @@ console.log(this.state.form);
                       <br />                   
                     <label htmlFor="nombre">Cantidad de Participantes</label>
                     <input className="form-control" type="number" name="cantParticipantes" id="cantParticipantes"
-                     onChange={this.handleChange} value={''} disabled/>
+                     onChange={this.handleChange} value={this.state.dataGrupoAlumnos.filter( alumno=> formClase.nombre === (alumno.idGrupo)).length} disabled/>
                     <br />
                     <label htmlFor="nombre">Fecha</label>
                     <input className="form-control" type="date" name="fecha" id="fecha"
@@ -251,8 +251,6 @@ console.log(this.state.form);
           </Modal>
 
 
-
-          
           <Modal fullscreen="sm"
     size="lg"  isOpen={this.state.modalJugar}>
           <ModalHeader style={{display: 'block'}}>
@@ -263,22 +261,29 @@ console.log(this.state.form);
             <table className="table " class="table table-striped table-hover">
               <thead>
                 <tr>
-                <th>Alumno</th>  
                 <th>VS</th>  
-                <th>Alumno</th>                
+                            
                 </tr>
               </thead>
               <tbody>
-                {this.state.dataGrupoAlumnos.filter( alumno=> formClase.nombre === (alumno.idGrupo))
+                {
+                this.state.dataGrupoAlumnos
                 .sort(() => Math.random() - 0.5)
-                .map(grupo=>{
+                .filter( alumno=> formClase.nombre === (alumno.idGrupo))
+                .map((grupo, index )=>{
                   return(
-                    <tr>
-                  <td>{grupo.idAlumno}</td>
-                  <td>{'VS'}</td>
-                  
+                    <>
+                  <tr>
                   <td>{grupo.idAlumno}</td>
                   </tr>
+                  <tr>
+                    {
+                      (index+1) %2 === 0
+                      ? <tr>.</tr>
+                      : <td>vs</td>
+                    }
+                  </tr>
+                  </>
                   )
                 })}
               </tbody>

@@ -6,6 +6,9 @@ export default function App() {
   const [searchFilter, setSearchFilter] = useState([]);
   const [result, setResult] = useState("");
 
+  const numbers = [{id: 5, ApellidoP: 'HERNANDEZ', ApellidoM: 'MEJIA', nombre: 'DOGGY', semestre: 2},
+     {id: 4, ApellidoP: 'PERALTA', ApellidoM: 'ARRECHIGA', nombre: 'SAMUEL', semestre: 2},
+      {id: 3, ApellidoP: 'MURILLO', ApellidoM: 'VARGAS', nombre: 'JUAN', semestre: 2}];
 
    useEffect(() => {
     const fetchData = async ()=> {
@@ -15,7 +18,7 @@ export default function App() {
          setData(resp.data);
          setSearchFilter(resp.data);
          let sortedData = resp.data.sort(() => Math.random() - 0.5);
-          console.log(sortedData);
+          console.log(sortedData[0].nombre);
        }
   catch(err){
    throw new Error(err);
