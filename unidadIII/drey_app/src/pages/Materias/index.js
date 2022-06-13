@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
-import './App.css';
+import './index.css';
 import axios from "axios";
-import "bootstrap/dist/js/bootstrap.js";
+
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 
 
-const url="http://127.0.0.1:8000/drey/v1/Alumno/";
-const urlCarrera="http://127.0.0.1:8000/drey/v1/Carrera/";
+const url="http://127.0.0.1:8000/drey/v1/Materia/";
 
-class Alumnos extends Component {
+class Materias extends Component {
 state={
   data:[],
-  dataCarrera:[],
   modalInsertar: false,
   modalEliminar: false,
   form:{
     id: '',
-    ApellidoP: '',
-    ApellidoM: '',
-    nombre: '',
-    semestre: '',
-    id_carrera: ''
+    Nombre:'',
+    descripcion: ''
   }
 }
 
@@ -32,15 +27,6 @@ axios.get(url).then(response=>{
   console.log(error.message);
 })
 }
-peticionGetCarrera=()=>{
-  axios.get(urlCarrera).then(response=>{
-    this.setState({dataCarrera: response.data});
-  }).catch(error=>{
-    console.log(error.message);
-  })
-  }
-  
-
 
 peticionPost=async()=>{
   delete this.state.form.id;
@@ -53,7 +39,7 @@ peticionPost=async()=>{
 }
 
 peticionPut=()=>{
-  axios.put(url+this.state.form.id+'/', this.state.form).then(response=>{
+  axios.put(url+this.state.form.id + '/', this.state.form).then(response=>{
     this.modalInsertar();
     this.peticionGet();
   })
@@ -70,19 +56,20 @@ modalInsertar=()=>{
   this.setState({modalInsertar: !this.state.modalInsertar});
 }
 
-seleccionarAlumno=(alumno)=>{
+seleccionarMateria=(materia)=>{
   this.setState({
     tipoModal: 'actualizar',
     form: {
-      id: alumno.id,
-      ApellidoP: alumno.ApellidoP,
-      ApellidoM: alumno.ApellidoM,
-      nombre: alumno.nombre,
-      semestre: alumno.semestre,
-      id_carrera: alumno.id_carrera
+        id: materia.id,
+        nombre:materia.nombre,
+        descripcion:materia.descripcion
+        
     }
   })
 }
+
+
+
 
 handleChange=async e=>{
 e.persist();
@@ -97,7 +84,6 @@ console.log(this.state.form);
 
   componentDidMount() {
     this.peticionGet();
-    this.peticionGetCarrera();
   }
   
 
@@ -106,36 +92,29 @@ console.log(this.state.form);
   return (
     <>
     <div className="App">
-    
     <br /><br /><br />
-  <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Alumno</button>
+  <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Materia</button>
   <br /><br />
-    <table className="table " class="table table-striped table-hover">
+    <table className="table ">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Apellido P</th>
-          <th>ApellidoM</th>
           <th>Nombre</th>
-          <th>semestre</th>
-          <th>carrera</th>
+          <th>Descripcion</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        {this.state.data.map(alumno=>{
+        {this.state.data.map(materia=>{
           return(
             <tr>
-          <td>{alumno.id}</td>
-          <td>{alumno.ApellidoP}</td>
-          <td>{alumno.ApellidoM}</td>
-          <td>{alumno.nombre}</td>
-          <td>{alumno.semestre}</td>
-          <td>{alumno.id_carrera}</td>
+          <td>{materia.id}</td>
+          <td>{materia.nombre}</td>
+          <td>{materia.descripcion}</td>
           <td>
-                <button className="btn btn-primary" onClick={()=>{this.seleccionarAlumno(alumno); this.modalInsertar()}}>Actualizar</button>
+                <button className="btn btn-primary" onClick={()=>{this.seleccionarMateria(materia); this.modalInsertar()}}>Actualizar</button>
                 {"   "}
-                <button className="btn btn-danger" onClick={()=>{this.seleccionarAlumno(alumno); this.setState({modalEliminar: true})}}>Eliminar</button>
+                <button className="btn btn-danger" onClick={()=>{this.seleccionarMateria(materia); this.setState({modalEliminar: true})}}>Eliminar</button>
                 </td>
           </tr>
           )
@@ -155,29 +134,13 @@ console.log(this.state.form);
                     <input className="form-control" type="text" name="id" id="id" readOnly 
                     onChange={this.handleChange} value={form?form.id: this.state.data.length+1}/>
                     <br />
-                    <label htmlFor="nombre">ApellidoP</label>
-                    <input className="form-control" type="text" name="ApellidoP" id="ApellidoP"
-                     onChange={this.handleChange} value={form?form.ApellidoP: ''}/>
-                    <br />
-                    <label htmlFor="nombre">ApellidoM</label>
-                    <input className="form-control" type="text" name="ApellidoM" id="ApellidoM"
-                     onChange={this.handleChange} value={form?form.ApellidoM: ''}/>
-                    <br />
                     <label htmlFor="nombre">Nombre</label>
                     <input className="form-control" type="text" name="nombre" id="nombre"
                      onChange={this.handleChange} value={form?form.nombre: ''}/>
                     <br />
-                    <label htmlFor="nombre">semestre</label>
-                    <input className="form-control" type="number" name="semestre" id="semestre" 
-                    onChange={this.handleChange} value={form?form.semestre: ''}/>
-                    <br />
-                    <label htmlFor="nombre">carrera</label>
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" 
-                     name="id_carrera" id="id_carrera" onChange={this.handleChange}>
-                      {this.state.dataCarrera.map(carrera=>(
-                      <option key={carrera.id} value={carrera.id}>{carrera.nombre}</option>))
-                      }
-                      </select>
+                    <label htmlFor="descripcion">Descripcion</label>
+                    <input className="form-control" type="text" name="descripcion" id="descripcion"
+                     onChange={this.handleChange} value={form?form.descripcion: ''}/>
                     <br />
                   </div>
                 </ModalBody>
@@ -197,7 +160,7 @@ console.log(this.state.form);
 
           <Modal isOpen={this.state.modalEliminar}>
             <ModalBody>
-               Estás seguro que deseas eliminar al alumno{form && form.nombre}
+               Estás seguro que deseas eliminar: {form && form.nombre}
             </ModalBody>
             <ModalFooter>
               <button className="btn btn-danger" onClick={()=>this.peticionDelete()}>Sí</button>
@@ -211,4 +174,4 @@ console.log(this.state.form);
   );
 }
 }
-export default Alumnos;
+export default Materias;
