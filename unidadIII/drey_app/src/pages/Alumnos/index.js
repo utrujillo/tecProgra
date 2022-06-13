@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import './App.css';
 import axios from "axios";
 import "bootstrap/dist/js/bootstrap.js";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import Search from '../../components/Search';
 
 
 
@@ -11,6 +12,7 @@ const urlCarrera="http://127.0.0.1:8000/drey/v1/Carrera/";
 
 class Alumnos extends Component {
 state={
+  result:'',
   data:[],
   dataCarrera:[],
   modalInsertar: false,
@@ -23,6 +25,11 @@ state={
     semestre: '',
     id_carrera: ''
   }
+}
+onChange = async e =>{
+  e.persist();
+  await this.setState({result: e.target.value});
+  console.log(this.state.result);
 }
 
 peticionGet=()=>{
@@ -100,11 +107,12 @@ console.log(this.state.form);
     this.peticionGetCarrera();
   }
   
+  
 
   render(){
     const {form}=this.state;
   return (
-    <>
+    <>  <Search placeholder='Nombre del Alumno' value= {this.state.result} onChange={this.onChange}/>
     <div className="App">
     
     <br /><br /><br />
@@ -123,7 +131,7 @@ console.log(this.state.form);
         </tr>
       </thead>
       <tbody>
-        {this.state.data.map(alumno=>{
+        {this.state.data.filter(alumno => alumno.nombre.toLowerCase().indexOf(this.state.result.toLowerCase()) > -1).map(alumno=>{
           return(
             <tr>
           <td>{alumno.id}</td>

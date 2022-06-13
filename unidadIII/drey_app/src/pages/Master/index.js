@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from "axios";
+import Search from '../../components/Search';
 
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
@@ -10,6 +11,7 @@ const url="http://127.0.0.1:8000/drey/v1/Maestros/";
 
 class Master extends Component {
 state={
+  result:'',
   data:[],
   modalInsertar: false,
   modalEliminar: false,
@@ -20,7 +22,11 @@ state={
     nombre: ''
   }
 }
-
+onChange = async e =>{
+  e.persist();
+  await this.setState({result: e.target.value});
+  console.log(this.state.result);
+}
 peticionGet=()=>{
 axios.get(url).then(response=>{
   this.setState({data: response.data});
@@ -92,7 +98,7 @@ console.log(this.state.form);
   render(){
     const {form}=this.state;
   return (
-    <>
+    <> <Search placeholder='Nombre del Docente' value= {this.state.result} onChange={this.onChange}/>
     <div className="App">
     
     <br /><br /><br />
@@ -109,7 +115,7 @@ console.log(this.state.form);
         </tr>
       </thead>
       <tbody>
-        {this.state.data.map(maestro=>{
+        {this.state.data.filter(maestro => maestro.nombre.toLowerCase().indexOf(this.state.result.toLowerCase()) > -1).map(maestro=>{
           return(
             <tr>
           <td>{maestro.id}</td>
