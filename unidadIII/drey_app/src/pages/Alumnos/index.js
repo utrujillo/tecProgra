@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
-
+import "bootstrap/dist/js/bootstrap.js";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 
 
 const url="http://127.0.0.1:8000/drey/v1/Alumno/";
+const urlCarrera="http://127.0.0.1:8000/drey/v1/Carrera/";
 
 class Alumnos extends Component {
 state={
   data:[],
+  dataCarrera:[],
   modalInsertar: false,
   modalEliminar: false,
   form:{
@@ -31,6 +32,15 @@ axios.get(url).then(response=>{
   console.log(error.message);
 })
 }
+peticionGetCarrera=()=>{
+  axios.get(urlCarrera).then(response=>{
+    this.setState({dataCarrera: response.data});
+  }).catch(error=>{
+    console.log(error.message);
+  })
+  }
+  
+
 
 peticionPost=async()=>{
   delete this.state.form.id;
@@ -87,6 +97,7 @@ console.log(this.state.form);
 
   componentDidMount() {
     this.peticionGet();
+    this.peticionGetCarrera();
   }
   
 
@@ -95,10 +106,11 @@ console.log(this.state.form);
   return (
     <>
     <div className="App">
+    
     <br /><br /><br />
   <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Alumno</button>
   <br /><br />
-    <table className="table ">
+    <table className="table " class="table table-striped table-hover">
       <thead>
         <tr>
           <th>ID</th>
@@ -107,6 +119,7 @@ console.log(this.state.form);
           <th>Nombre</th>
           <th>semestre</th>
           <th>carrera</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -159,14 +172,18 @@ console.log(this.state.form);
                     onChange={this.handleChange} value={form?form.semestre: ''}/>
                     <br />
                     <label htmlFor="nombre">carrera</label>
-                    <input className="form-control" type="number" name="id_carrera" id="id_carrera"
-                     onChange={this.handleChange} value={form?form.id_carrera: ''}/>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" 
+                     name="id_carrera" id="id_carrera" onChange={this.handleChange}>
+                      {this.state.dataCarrera.map(carrera=>(
+                      <option key={carrera.id} value={carrera.id}>{carrera.nombre}</option>))
+                      }
+                      </select>
                     <br />
                   </div>
                 </ModalBody>
 
                 <ModalFooter>
-                  {this.state.tipoModal=='insertar'?
+                  {this.state.tipoModal==='insertar'?
                     <button className="btn btn-success" onClick={()=>this.peticionPost()}>
                     Insertar
                   </button>: <button className="btn btn-primary" onClick={()=>this.peticionPut()}>

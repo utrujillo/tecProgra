@@ -47,7 +47,6 @@ state={
   formGrupos:{
     idGrupo: '',
     idAlumno: '',
-    Alumno:''
    
   },
   formClase:{
@@ -125,24 +124,21 @@ peticionPost2=async(jugada)=>{
   delete this.state.formjugadaAlumno.id;
   
 
-  this.state.dataGrupoAlumnos.filter(grupoalumno=>  jugada.grupo   === (grupoalumno.idGrupo)).map(async(element,index) => {
+  this.state.dataGrupoAlumnos.map(async(element,index) => {
 
     let result = ({
       pocision:0,
       idJugada:jugada.id,
-      idAlumno:element.Alumno
+      idAlumno:element.id
     })
     await axios.post(urlJugadaAlumno,result).then(response=>{
-     
+      this.modalJugar();
       this.peticionGetJugadaAlumno();
-      
   }).catch(error=>{
      console.log(error.message);
   })
 
-  }) 
-  this.modalJugar();
-  this.peticionGet();
+  })
 }
 
 peticionPut=()=>{

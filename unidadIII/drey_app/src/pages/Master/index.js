@@ -16,13 +16,15 @@ state={
   form:{
     id: '',
     ApellidoM: '',
-    ApellidoP: ''
+    ApellidoP: '',
+    nombre: ''
   }
 }
 
 peticionGet=()=>{
 axios.get(url).then(response=>{
   this.setState({data: response.data});
+  console.log(response.data);
 }).catch(error=>{
   console.log(error.message);
 })
@@ -62,7 +64,8 @@ seleccionarMaestro=(maestro)=>{
     form: {
         id: maestro.id,
         ApellidoM:maestro.ApellidoM,
-        ApellidoP: maestro.ApellidoP
+        ApellidoP: maestro.ApellidoP,
+        nombre: maestro.nombre
     }
   })
 }
@@ -91,6 +94,7 @@ console.log(this.state.form);
   return (
     <>
     <div className="App">
+    
     <br /><br /><br />
   <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Maestro</button>
   <br /><br />
@@ -100,6 +104,7 @@ console.log(this.state.form);
           <th>ID</th>
           <th>Apellido P</th>
           <th>ApellidoM</th>
+          <th>Nombre</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -110,6 +115,7 @@ console.log(this.state.form);
           <td>{maestro.id}</td>
           <td>{maestro.ApellidoP}</td>
           <td>{maestro.ApellidoM}</td>
+          <td>{maestro.nombre}</td>
           <td>
                 <button className="btn btn-primary" onClick={()=>{this.seleccionarMaestro(maestro); this.modalInsertar()}}>Actualizar</button>
                 {"   "}
@@ -141,11 +147,15 @@ console.log(this.state.form);
                     <input className="form-control" type="text" name="ApellidoM" id="ApellidoM"
                      onChange={this.handleChange} value={form?form.ApellidoM: ''}/>
                     <br />
+                    <label htmlFor="nombre">Nombre</label>
+                    <input className="form-control" type="text" name="nombre" id="nombre"
+                     onChange={this.handleChange} value={form?form.nombre: ''}/>
+                    <br />
                   </div>
                 </ModalBody>
 
                 <ModalFooter>
-                  {this.state.tipoModal=='insertar'?
+                  {this.state.tipoModal==='insertar'?
                     <button className="btn btn-success" onClick={()=>this.peticionPost()}>
                     Insertar
                   </button>: <button className="btn btn-primary" onClick={()=>this.peticionPut()}>

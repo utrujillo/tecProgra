@@ -5,6 +5,7 @@ import {
   Route
 } from 'react-router-dom'
 import Header from '../components/Header'
+import Menu from '../components/Menu'
 
 import routes from '../router'
 
@@ -13,6 +14,7 @@ const App = () => {
     <>
       <Header />
       <BrowserRouter>
+      <Menu/>
         <Routes>
           {
             routes.map( (route, index) => (
@@ -24,7 +26,9 @@ const App = () => {
             ) )
           }
         </Routes>
+        
       </BrowserRouter>
+   
     </>
   )
 }
