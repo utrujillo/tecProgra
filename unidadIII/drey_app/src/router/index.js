@@ -11,7 +11,7 @@ import Clase from '../pages/Clases'
 // import UserEdit from '../pages/Users/edit'
 
 const routes = [
-  { name: 'Home', path: '/', component: Home },
+  { name: 'Juego', path: '/', component: Juego },
   { name: 'About', path: '/about', component: About },
   { name: 'Users', path: '/users', component: Users },
   { name: 'Versus', path: '/versus', component: Versus },
@@ -19,7 +19,6 @@ const routes = [
   { name: 'Grupo', path: '/grupo', component: Grupo },
   { name: 'Master', path: '/master', component: Master },
   { name: 'Materias', path: '/materias', component: Materias },
-  { name: 'Juego', path: '/juego', component: Juego },
   { name: 'Clase', path: '/Clase', component: Clase},
   // { name: 'UserEdit', path: '/users/:id', component: UserEdit },
 ]

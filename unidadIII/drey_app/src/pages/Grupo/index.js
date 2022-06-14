@@ -320,7 +320,7 @@ handleChange3=async e=>{
 
 
           <Modal fullscreen="sm"
-    size="lg"  isOpen={this.state.modalAlumnos}>
+           size="lg"  isOpen={this.state.modalAlumnos}>
           <ModalHeader style={{display: 'block'}}>
           <h5 class="modal-title" id="exampleModalLongTitle">Alumnos en este grupo</h5>
                   <span style={{float: 'right'}} onClick={()=>this.modalAlumnos()}>x</span>

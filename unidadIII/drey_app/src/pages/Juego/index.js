@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import classes from './Juego.module.css'
 
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
@@ -122,15 +122,10 @@ VerAlumnos=()=>{
     tipoModal: 'Ver',
     formClase: {
       nombre: this.state.form.idClase
-    }
-    
+    }   
   })
   console.log(this.state.form.idClase);
 }
-
-
-
-
 handleChange=async e=>{
 e.persist();
 await this.setState({
@@ -257,12 +252,12 @@ console.log(this.state.form);
           <h5 class="modal-title" id="exampleModalLongTitle">Alumnos</h5>
                   <span style={{float: 'right'}} onClick={()=>this.modalJugar()}>x</span>
                 </ModalHeader>
-            <ModalBody>
-            <table className="table " class="table table-striped table-hover">
+            <ModalBody className={classes.wrapper__table} >
+            <table className={classes.wrapper__table}  class="table table-striped table-hover" borderless
+          responsive>
               <thead>
                 <tr>
-                <th>VS</th>  
-                            
+                <th>Versus</th>                     
                 </tr>
               </thead>
               <tbody>
@@ -274,10 +269,11 @@ console.log(this.state.form);
                   return(
                     <>
                   <tr>
-                  <td>{grupo.idAlumno}</td>
+                  <td onChange={this.handleChange} name="alumno" value={grupo.idAlumno}>{grupo.idAlumno}</td>
                   </tr>
                   <tr>
                     {
+                      console.log(form)
                       (index+1) %2 === 0
                       ? <tr>.</tr>
                       : <td>vs</td>
@@ -290,7 +286,7 @@ console.log(this.state.form);
             </table>
             </ModalBody>
             <ModalFooter>
-            <button className="btn btn-danger" onClick={()=>this.modalJugar()}>OK</button>
+            <button className="btn btn-danger" onClick={()=>this.setState({modalJugar: false})}>OK</button>
             </ModalFooter>
           </Modal>
   </div>
