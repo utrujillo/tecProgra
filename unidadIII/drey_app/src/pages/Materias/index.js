@@ -136,11 +136,11 @@ console.log(this.state.form);
                     <br />
                     <label htmlFor="nombre">Nombre</label>
                     <input className="form-control" type="text" name="nombre" id="nombre"
-                     onChange={this.handleChange} value={form?form.nombre: ''}/>
+                    onChange={this.handleChange} value={form?form.nombre: ''}/>
                     <br />
                     <label htmlFor="descripcion">Descripcion</label>
                     <input className="form-control" type="text" name="descripcion" id="descripcion"
-                     onChange={this.handleChange} value={form?form.descripcion: ''}/>
+                    onChange={this.handleChange} value={form?form.descripcion: ''}/>
                     <br />
                   </div>
                 </ModalBody>

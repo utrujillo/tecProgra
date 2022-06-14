@@ -1,14 +1,26 @@
-import React from 'react'
+import React, {useReducer} from 'react'
 import Encabezado from './components/Encabezado'
+import { AuthContext } from '../pages/Login/AuthContext'
+import axios from 'axios'
+import { authReducer,  LOGIN } from '../reducers/authReducer'
+
 
 const App = () => {
+  const [data, dispatch] = useReducer(authReducer, {token:null})
+  const loginThunk = async (username, password) => {
+    const res = await axios.post(
+      'http://localhost:8000/auth/',
+      {username: username, password: password}
+    )
+    dispatch({ type:LOGIN, token:res.data.token })
+  }
   return(
-    <>
-      <Encabezado text='MSC Gen. 2021' css_styles={ {"background": "blue"} } />
-      <h1>Hola mundo</h1>
-      <h5>Saludos</h5>
-      <Encabezado text='Generacion 2018' css_styles={ {"background": "red"} } />
-    </>
+    <AuthContext.Provider value={{
+      data,
+      loginThunk  
+    }}>
+
+    </AuthContext.Provider>
   )
 }
 

@@ -1,0 +1,20 @@
+.wrapper__header{
+  background: #091952;
+  color: #F3F3F3;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  box-sizing: content-box;
+}
+  .wrapper__logo{
+    width: 125px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .logo{
+    width: 100%;
+    height: auto;
+  }

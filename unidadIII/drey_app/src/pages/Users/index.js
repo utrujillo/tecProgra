@@ -18,17 +18,18 @@ const Users = () => {
   // }, [] )
 
   const navigate = useNavigate()
+
+  const [shown, setShown] = useState(false);
+      const switchShown = () => setShown(!shown);
+  const [password, setPassword] = useState(false);
+  const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
+  //operador ternario
+
   const [ users, setUsers ] = useState([])
 
   const loadUsers = () => {
     setUsers( usersLoaded )
   }
-
-  const [shown, setShown] = React.useState(false);
-  const [password, setPassword] = React.useState('');
-  
-  const switchShown = () => setShown(!shown);
-  const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
 
   useEffect( () => {
     loadUsers()

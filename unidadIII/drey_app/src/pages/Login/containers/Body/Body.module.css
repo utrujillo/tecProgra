@@ -1,0 +1,26 @@
+.wrapper__body{
+    color: #F3F3F3;
+    height: 575px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 50px;
+    box-sizing: content-box;
+  }
+  .wrapper__right{
+    flex-direction: column; 
+  }
+  .wrapper__logo{
+    width: 425px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .logo{
+    width: 100%;
+    height: auto;
+  }
+  .wrapper__logoUser{
+    width: 125px;
+    height: 100%;
+  }

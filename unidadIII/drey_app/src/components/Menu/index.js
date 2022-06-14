@@ -4,7 +4,7 @@ import 'reactstrap';
 
 const Menu = () => {
     const navigate = useNavigate();
-     const handleClickAlumnos = () => {
+    const handleClickAlumnos = () => {
     navigate('/Alumnos');
     }
     const handleClickMaestros = () => {

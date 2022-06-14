@@ -8,6 +8,7 @@ import Header from '../components/Header'
 import Menu from '../components/Menu'
 
 import routes from '../router'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const App = () => {
   return(
