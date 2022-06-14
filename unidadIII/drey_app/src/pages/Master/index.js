@@ -98,7 +98,9 @@ console.log(this.state.form);
   render(){
     const {form}=this.state;
   return (
-    <> <Search placeholder='Nombre del Docente' value= {this.state.result} onChange={this.onChange}/>
+    <> <div className='search'>
+      <Search   placeholder='Buscar Docente' value= {this.state.result} onChange={this.onChange}/>
+      </div> 
     <div className="App">
     
     <br /><br /><br />

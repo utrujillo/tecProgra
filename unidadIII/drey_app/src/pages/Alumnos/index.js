@@ -112,7 +112,7 @@ console.log(this.state.form);
   render(){
     const {form}=this.state;
   return (
-    <>  <Search placeholder='Nombre del Alumno' value= {this.state.result} onChange={this.onChange}/>
+    <>  <Search placeholder=']Buscar Alumno' value= {this.state.result} onChange={this.onChange}/>
     <div className="App">
     
     <br /><br /><br />
