@@ -5,8 +5,7 @@ import "bootstrap/dist/js/bootstrap.js";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import Grupo from '../Grupo';
 import Materias from '../Materias';
-
-
+import Search from '../../components/Search';
 
 const url="http://127.0.0.1:8000/drey/v1/Clase/";
 const urlCarrera="http://127.0.0.1:8000/drey/v1/Carrera/";
@@ -15,12 +14,9 @@ const urlPeriodo="http://127.0.0.1:8000/drey/v1/Periodo/";
 const urlMateria="http://127.0.0.1:8000/drey/v1/Materia/";
 const urlGrupo="http://127.0.0.1:8000/drey/v1/Grupo/";
 
-
-
-
-
 class Alumnos extends Component {
 state={
+  result:'',
   data:[],
   dataCarrera:[],
   dataMaestro:[],
@@ -40,7 +36,11 @@ state={
     idMateria: ''
   }
 }
-
+onChange = async e =>{
+  e.persist();
+  await this.setState({result: e.target.value});
+  console.log(this.state.result);
+}
 peticionGet=()=>{
 axios.get(url).then(response=>{
   this.setState({data: response.data});
@@ -54,7 +54,7 @@ peticionGetCarrera=()=>{
   }).catch(error=>{
     console.log(error.message);
   })
-  }
+}
 peticionGetMaestro=()=>{
     axios.get(urlMaestro).then(response=>{
       this.setState({dataMaestro: response.data});
@@ -67,8 +67,8 @@ peticionGetMaestro=()=>{
       this.setState({dataPeriodo: response.data});
     }).catch(error=>{
       console.log(error.message);
-    })
-  }
+  })
+  } 
   peticionGetGrupo=()=>{
     axios.get(urlGrupo).then(response=>{
       this.setState({dataGrupo: response.data});
@@ -83,10 +83,6 @@ peticionGetMaestro=()=>{
       console.log(error.message);
     })
   }
-  
-
-
-
 peticionPost=async()=>{
   delete this.state.form.id;
  await axios.post(url,this.state.form).then(response=>{
@@ -96,25 +92,21 @@ peticionPost=async()=>{
     console.log(error.message);
   })
 }
-
 peticionPut=()=>{
   axios.put(url+this.state.form.id+'/', this.state.form).then(response=>{
     this.modalInsertar();
     this.peticionGet();
   })
 }
-
 peticionDelete=()=>{
   axios.delete(url+this.state.form.id).then(response=>{
     this.setState({modalEliminar: false});
     this.peticionGet();
   })
 }
-
 modalInsertar=()=>{
   this.setState({modalInsertar: !this.state.modalInsertar});
 }
-
 seleccionarAlumno=(clase)=>{
   this.setState({
     tipoModal: 'actualizar',
@@ -130,7 +122,6 @@ seleccionarAlumno=(clase)=>{
     }
   })
 }
-
 handleChange=async e=>{
 e.persist();
 await this.setState({
@@ -141,7 +132,6 @@ await this.setState({
 });
 console.log(this.state.form);
 }
-
   componentDidMount() {
     this.peticionGet();
     this.peticionGetCarrera();
@@ -149,19 +139,17 @@ console.log(this.state.form);
     this.peticionGetPeriodo();
     this.peticionGetGrupo();
     this.peticionGetMateria();
-
   }
-  
-
   render(){
-    const {form}=this.state;
+  const {form}=this.state;
   return (
-    <>
+    <> <div className='search'>
+    <Search   placeholder='Buscar Clase' value= {this.state.result} onChange={this.onChange}/>
+    </div> 
     <div className="App">
-    
     <br /><br /><br />
-  <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Nueva Clase</button>
-  <br /><br />
+    <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Nueva Clase</button>
+    <br /><br />
     <table className="table " class="table table-striped table-hover">
       <thead>
         <tr>
@@ -176,7 +164,9 @@ console.log(this.state.form);
         </tr>
       </thead>
       <tbody>
-        {this.state.data.map(clase=>{
+        {this.state.data.filter(clase => clase.nombre.toLowerCase()
+        .indexOf(this.state.result.toLowerCase()) > -1)
+        .map(clase=>{
           return(
             <tr>
           <td>{clase.id}</td>
@@ -197,14 +187,11 @@ console.log(this.state.form);
         })}
       </tbody>
     </table>
-
-
-
     <Modal  isOpen={this.state.modalInsertar}>
-                <ModalHeader style={{display: 'block'}}>
-                  <span style={{float: 'right'}} onClick={()=>this.modalInsertar()}>x</span>
-                </ModalHeader>
-                <ModalBody>
+            <ModalHeader style={{display: 'block'}}>
+              <span style={{float: 'right'}} onClick={()=>this.modalInsertar()}>x</span>
+            </ModalHeader>
+            <ModalBody>
                   <div className="form-group">
                     <label htmlFor="id">ID</label>
                     <input className="form-control" type="text" name="id" id="id" readOnly 
@@ -259,9 +246,8 @@ console.log(this.state.form);
                       </select>
                     <br />
                   </div>
-                </ModalBody>
-
-                <ModalFooter>
+            </ModalBody>
+            <ModalFooter>
                   {this.state.tipoModal=='insertar'?
                     <button className="btn btn-success" onClick={()=>this.peticionPost()}>
                     Insertar
@@ -270,24 +256,20 @@ console.log(this.state.form);
                   </button>
   }
                     <button className="btn btn-danger" onClick={()=>this.modalInsertar()}>Cancelar</button>
-                </ModalFooter>
-          </Modal>
-
-
-          <Modal isOpen={this.state.modalEliminar}>
-            <ModalBody>
+            </ModalFooter>
+      </Modal>
+      <Modal isOpen={this.state.modalEliminar}>
+          <ModalBody>
                Estás seguro que deseas eliminar al alumno{form && form.nombre}
-            </ModalBody>
-            <ModalFooter>
+          </ModalBody>
+          <ModalFooter>
               <button className="btn btn-danger" onClick={()=>this.peticionDelete()}>Sí</button>
               <button className="btn btn-secundary" onClick={()=>this.setState({modalEliminar: false})}>No</button>
-            </ModalFooter>
-          </Modal>
+          </ModalFooter>
+      </Modal>
   </div>
-
-
-  </>
-  );
+</>
+);
 }
 }
 export default Alumnos;

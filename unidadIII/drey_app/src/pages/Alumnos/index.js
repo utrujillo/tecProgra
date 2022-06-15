@@ -5,8 +5,6 @@ import "bootstrap/dist/js/bootstrap.js";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import Search from '../../components/Search';
 
-
-
 const url="http://127.0.0.1:8000/drey/v1/Alumno/";
 const urlCarrera="http://127.0.0.1:8000/drey/v1/Carrera/";
 
@@ -45,9 +43,7 @@ peticionGetCarrera=()=>{
   }).catch(error=>{
     console.log(error.message);
   })
-  }
-  
-
+}
 
 peticionPost=async()=>{
   delete this.state.form.id;
@@ -102,23 +98,20 @@ await this.setState({
 console.log(this.state.form);
 }
 
-  componentDidMount() {
+componentDidMount() {
     this.peticionGet();
     this.peticionGetCarrera();
-  }
-  
-  
+}
 
   render(){
     const {form}=this.state;
   return (
-    <>  <Search placeholder=']Buscar Alumno' value= {this.state.result} onChange={this.onChange}/>
-    <div className="App">
-    
+    <>  <Search placeholder='Buscar Alumno' value= {this.state.result} onChange={this.onChange}/>
+    <div className="App"> 
     <br /><br /><br />
   <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Alumno</button>
   <br /><br />
-    <table className="table " class="table table-striped table-hover">
+    <table className="table " class="table table-striped table-hover"> 
       <thead>
         <tr>
           <th>ID</th>
@@ -131,7 +124,9 @@ console.log(this.state.form);
         </tr>
       </thead>
       <tbody>
-        {this.state.data.filter(alumno => alumno.nombre.toLowerCase().indexOf(this.state.result.toLowerCase()) > -1).map(alumno=>{
+        {this.state.data.filter(alumno => alumno.nombre.toLowerCase()
+        .indexOf(this.state.result.toLowerCase()) > -1)
+        .map(alumno=>{
           return(
             <tr>
           <td>{alumno.id}</td>
@@ -150,9 +145,6 @@ console.log(this.state.form);
         })}
       </tbody>
     </table>
-
-
-
     <Modal isOpen={this.state.modalInsertar}>
                 <ModalHeader style={{display: 'block'}}>
                   <span style={{float: 'right'}} onClick={()=>this.modalInsertar()}>x</span>
@@ -183,7 +175,11 @@ console.log(this.state.form);
                     <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" 
                      name="id_carrera" id="id_carrera" onChange={this.handleChange}>
                       {this.state.dataCarrera.map(carrera=>(
-                      <option key={carrera.id} value={carrera.id}>{carrera.nombre}</option>))
+                      <option 
+                        key = {carrera.id} 
+                        value={carrera.id}
+                        selected={ this.state.form.id_carrera==carrera.id?'selected':''}
+                      >{carrera.nombre}</option>))
                       }
                       </select>
                     <br />
@@ -197,26 +193,22 @@ console.log(this.state.form);
                   </button>: <button className="btn btn-primary" onClick={()=>this.peticionPut()}>
                     Actualizar
                   </button>
-  }
+                  } 
                     <button className="btn btn-danger" onClick={()=>this.modalInsertar()}>Cancelar</button>
                 </ModalFooter>
           </Modal>
-
-
-          <Modal isOpen={this.state.modalEliminar}>
-            <ModalBody>
-               Estás seguro que deseas eliminar al alumno{form && form.nombre}
-            </ModalBody>
-            <ModalFooter>
-              <button className="btn btn-danger" onClick={()=>this.peticionDelete()}>Sí</button>
-              <button className="btn btn-secundary" onClick={()=>this.setState({modalEliminar: false})}>No</button>
-            </ModalFooter>
-          </Modal>
-  </div>
-
-
-  </>
-  );
-}
+              <Modal isOpen={this.state.modalEliminar}>
+                <ModalBody>
+                  Estás seguro que deseas eliminar al alumno{form && form.nombre}
+                </ModalBody>
+                <ModalFooter>
+                  <button className="btn btn-danger" onClick={()=>this.peticionDelete()}>Sí</button>
+                  <button className="btn btn-secundary" onClick={()=>this.setState({modalEliminar: false})}>No</button>
+                </ModalFooter>
+              </Modal>
+      </div>
+    </>
+    );  
+  }
 }
 export default Alumnos;

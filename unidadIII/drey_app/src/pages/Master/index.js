@@ -27,6 +27,7 @@ onChange = async e =>{
   await this.setState({result: e.target.value});
   console.log(this.state.result);
 }
+
 peticionGet=()=>{
 axios.get(url).then(response=>{
   this.setState({data: response.data});
@@ -106,7 +107,7 @@ console.log(this.state.form);
     <br /><br /><br />
   <button className="btn btn-success" onClick={()=>{this.setState({form: null, tipoModal: 'insertar'}); this.modalInsertar()}}>Agregar Maestro</button>
   <br /><br />
-    <table className="table ">
+    <table className="table" class="table table-striped table-hover">
       <thead>
         <tr>
           <th>ID</th>
@@ -117,7 +118,9 @@ console.log(this.state.form);
         </tr>
       </thead>
       <tbody>
-        {this.state.data.filter(maestro => maestro.nombre.toLowerCase().indexOf(this.state.result.toLowerCase()) > -1).map(maestro=>{
+        {this.state.data.filter(maestro => maestro.nombre.toLowerCase()
+        .indexOf(this.state.result.toLowerCase()) > -1)
+        .map(maestro=>{
           return(
             <tr>
           <td>{maestro.id}</td>

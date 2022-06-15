@@ -1,6 +1,6 @@
 .wrapper__header{
   background: #091952;
-  color: #F3F3F3;
+  color: #f3f3f3;
   height: 75px;
   display: flex;
   justify-content: space-between;
@@ -16,5 +16,15 @@
   }
   .logo{
     width: 100%;
+    height: auto;
+  }
+  .wrapper__logoUser{
+    width: 125px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .logoUser{
+    width: 45%;
     height: auto;
   }
